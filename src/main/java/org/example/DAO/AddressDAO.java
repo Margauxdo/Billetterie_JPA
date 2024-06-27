@@ -1,11 +1,9 @@
 package org.example.DAO;
 
-import jdk.jshell.Snippet;
 import org.example.entity.Address;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import java.beans.ExceptionListener;
 import java.util.List;
 
 public class AddressDAO{
@@ -27,9 +25,11 @@ public class AddressDAO{
     public void displayAddress(int id){
 
         Query query = em.createQuery("select a from Address a where id = :id", Address.class);
-        query.setParameter("id",id);//mettre id est non en dur
+        query.setParameter("id",id);
         List<Address> addressList = query.getResultList();
-        System.out.println(addressList);
+        for(Address address : addressList){
+            System.out.println(address);
+        }
         try {
             Address address1 = em.find(Address.class,id);
             System.out.println(address1);
