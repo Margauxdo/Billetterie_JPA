@@ -1,17 +1,55 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
+import org.example.DAO.AddressDAO;
+import org.example.DAO.ClientDAO;
+import org.example.DAO.EventDAO;
+import org.example.DAO.TicketDAO;
+import org.example.entity.Address;
+import org.example.util.IHM;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("billeterie");
+        EntityManager em = emf.createEntityManager();
+
+
+
+        AddressDAO addressDAO = new AddressDAO(em);
+        Address address = Address.builder()
+                .street("rue de Paris")
+                .city("Lille")
+                .build();
+
+        addressDAO.createAddress(address);
+        addressDAO.displayAddress(address.getId());
+        addressDAO.updateAddress(address);
+        addressDAO.deleteAddress(address.getId());
+
+
+
+
+
+
+
+
+        ClientDAO clientDAO = new ClientDAO(em);
+        EventDAO eventDAO = new EventDAO(em);
+        TicketDAO ticketDAO = new TicketDAO(em);
+
+
+        new IHM(em,emf).start();
+        em.close();
+        emf.close();
+        //
+        //créé un objet avec builder + appeler les methodes
+        //lancer IHM start
     }
+
+
 }
