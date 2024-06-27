@@ -23,7 +23,7 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="event_id")
     private Event event;
     private Place typeOfPlace;
