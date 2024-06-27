@@ -22,7 +22,7 @@ public class Event {
     @Column(name ="event_id")
     private int id;
     private String nameEvent;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="address_id")
     private Address addressEvent;
     private LocalDate date;
