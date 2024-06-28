@@ -20,7 +20,7 @@ public class Ticket {
     @Column(name = "ticket_id")
     private int id;
     private String placeNumber;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
     private Client client;
     @ManyToOne(cascade = CascadeType.ALL)

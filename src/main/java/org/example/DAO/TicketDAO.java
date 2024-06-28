@@ -11,7 +11,7 @@ public class TicketDAO {
 
     private EntityManager em;
 
-    public TicketDAO(EntityManager entityManager) {
+    public TicketDAO(EntityManager em) {
         this.em = em;
     }
 

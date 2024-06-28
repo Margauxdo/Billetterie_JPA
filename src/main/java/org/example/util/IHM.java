@@ -355,6 +355,7 @@ String entry;
         System.out.println("address city : ");
         String city =  sc.nextLine();
         Address address = Address.builder().street(street).city(city).build();
+
         System.out.println(" client age : ");
         int age = Integer.parseInt(sc.nextLine());
         System.out.println(age);
